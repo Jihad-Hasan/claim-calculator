@@ -89,61 +89,153 @@ var data = [
   $(document).ready(function () { stepProgress(step); });
 
 
-
+  $("input[name='utility']").on("change", function () {
+    // Remove border and hide alert when a radio button is selected
+    $('.error1').css("border", "1px solid");
+    $('#alert1').css("display", "none");
+  });
+  $("input[name='form2']").on("change", function () {
+    // Remove border and hide alert when a radio button is selected
+    $('#alert2').css("display","none");
+  $('.error2').css("border","1px solid")
+  });
   
+
   $(".next").on("click", function () {
+    console.log(step)
     var nextstep = false;
     if (step == 2) {
       nextstep = checkForm("userinfo");
       if (!$("input[name='utility']:checked").val()) {
-        alert("Please select a radio button.");
+        $('#alert1').css("display","block");
+        $('.error1').css("border","2px solid red")
         return;
+    } else if (!$("input[name='form2']:checked").val()) {
+      $('#alert2').css("display","block");
+      $('.error2').css("border","2px solid red")
+      return;
     }
     } else {
+
       nextstep = true;
     }
-    if (nextstep == true) {
+    //if (nextstep == true) {
 
 
       if(step == 3){
-        $("#overlay").show();
-        $(".loader-container").show();
-        setTimeout(function () {
-          $("#overlay").hide();
-          $(".loader-container").hide();
+    
+    if(currentType == 'gas' && (gasValue > 0 && gasMonthvalue >0)){
+          $('#alert3').css("display","none");
+          $("#overlay").show();
+          $(".loader-container").show();
+          setTimeout(function () {
+            $("#overlay").hide();
+            $(".loader-container").hide();
+    
+            if (step < $(".step").length) {
+              $(".step").show();
+              $(".step")
+                .not(":eq(" + step++ + ")")
+                .hide();
+              stepProgress(step);
+            }
+            hideButtons(step);
+          }, 2000); 
   
-          if (step < $(".step").length) {
-            $(".step").show();
-            $(".step")
-              .not(":eq(" + step++ + ")")
-              .hide();
-            stepProgress(step);
-          }
-          hideButtons(step);
-        }, 2000000); 
+          setTimeout( function(){
+            const start = () => {
+                  confetti.start()
+          };
+    
+          //  Stop
+    
+          const stop = () => {
+              setTimeout(function() {
+                  confetti.stop()
+              }, 5000); // 5000 is time that after 5 second stop the confetti ( 5000 = 5 sec)
+          };
+          start();
+          stop();
+            
+          }, 2000)
+        }
+        else if(currentType == 'electric' && (elecValue > 0 && elecMonthvalue > 0)){
+          $('#alert3').css("display","none");
 
-        setTimeout( function(){
-          const start = () => {
-                confetti.start()
-        };
+          $("#overlay").show();
+          $(".loader-container").show();
+          setTimeout(function () {
+            $("#overlay").hide();
+            $(".loader-container").hide();
+    
+            if (step < $(".step").length) {
+              $(".step").show();
+              $(".step")
+                .not(":eq(" + step++ + ")")
+                .hide();
+              stepProgress(step);
+            }
+            hideButtons(step);
+          }, 2000); 
   
-        //  Stop
+          setTimeout( function(){
+            const start = () => {
+                  confetti.start()
+          };
+    
+          //  Stop
+    
+          const stop = () => {
+              setTimeout(function() {
+                  confetti.stop()
+              }, 5000); // 5000 is time that after 5 second stop the confetti ( 5000 = 5 sec)
+          };
+          start();
+          stop();
+            
+          }, 2000)
+        }
+        else if(currentType == 'gande' && (gasValue > 0 && gasMonthvalue >0)&&(elecValue > 0 && elecMonthvalue > 0)){
+          $('#alert3').css("display","none");
+          $('.gas-claim').hide();
+          $("#overlay").show();
+          $(".loader-container").show();
+          setTimeout(function () {
+            $("#overlay").hide();
+            $(".loader-container").hide();
+    
+            if (step < $(".step").length) {
+              $(".step").show();
+              $(".step")
+                .not(":eq(" + step++ + ")")
+                .hide();
+              stepProgress(step);
+            }
+            hideButtons(step);
+          }, 2000); 
   
-        const stop = () => {
-            setTimeout(function() {
-                confetti.stop()
-            }, 5000); // 5000 is time that after 5 second stop the confetti ( 5000 = 5 sec)
-        };
-        start();
-        stop();
-          
-        }, 2000000)
-       
-
-   
-        
+          setTimeout( function(){
+            const start = () => {
+                  confetti.start()
+          };
+    
+          //  Stop
+    
+          const stop = () => {
+              setTimeout(function() {
+                  confetti.stop()
+              }, 5000); // 5000 is time that after 5 second stop the confetti ( 5000 = 5 sec)
+          };
+          start();
+          stop();
+            
+          }, 2000)
+        }else{
+          $('#alert3').css("display","block");
+        }
       }
       else{
+       // $('#alert3').css("display","block");
         $("#overlay").show();
         $("#loader").show();
         setTimeout(function () {
@@ -162,11 +254,13 @@ var data = [
         
         
       }
+      
+     
       // Show overlay and loader for 4 seconds
     
       
       // 4 seconds delay
-    }
+   // }
 });
 
 $(".submit").on("click", function () {
@@ -232,6 +326,11 @@ $(".back").on("click", function () {
     }
     if(step == 3){
      $(".btn-uniqe").hide();
+     //$('.gas-claim').show();
+    }
+    if(step == 3 && currentType =='gande'){
+      $('.gas-claim').hide();
+
     }
     if (step == (limit - 1)) {
       $(".next").hide();
@@ -274,7 +373,7 @@ var elecValue = 0;
 var elecMonthvalue = 0;
 var gasMonthvalue = 0;
 
-
+var currentType = ''
 
 var totalPrice1 = 0;
 var totalPrice2 = 0;
@@ -282,6 +381,7 @@ var totalPrice3 = 0;
 var totalPrice4 = 0;
   $('#customRange1').on('input', function() {
     $('#gasValue').text("£ "+ $(this).val());
+      $('#alert3').css("display","none");
     gasValue = parseInt($(this).val());
     updatePriceOne();
     updatePriceTwo()
@@ -291,6 +391,7 @@ var totalPrice4 = 0;
 
 
 $('#customRange2').on('input', function() {
+  $('#alert3').css("display","none");
     $('#gasContractValue').text($(this).val()+" Months");
     gasMonthvalue = parseInt($(this).val());
     updatePriceOne();
@@ -319,27 +420,32 @@ $('#customRange4').on('input', function() {
 
 $('input[type="radio"]').change(function() {
     if ($(this).val() === 'gas') {
+      currentType = 'gas';
+      $('.gas-claim').show();
         $('.condition1').show();
         $('.condition2').hide();
         $('.bothprice').hide();
 
     } else if ($(this).val() === 'electric') {
+      currentType = 'electric';
+
         $('.condition1').hide();
         $('.condition2').show();
         $('.bothprice').hide();
 
-    }else{
+    }else if ($(this).val() === 'gande'){
+      currentType = 'gande';
+
       $('.condition1').show();
-      $('.gas-claim').hide();
       $('.condition2').show();
       $('.indivisul_price').hide();
 
       $('.bothprice').show();
-      
-
-      
     }
-});function updatePriceOne() {
+    
+});
+
+function updatePriceOne() {
   totalPrice1 = ((gasValue * gasMonthvalue) * 0.14);
   $(".priceone").text("£ "+parseInt(totalPrice1));
   updateBothprice();
@@ -368,3 +474,19 @@ function updateBothprice() {
   $(".bothprice2").text("£ "+ parseInt(totalPrice2 + totalPrice4));
 }
 
+function validateStep4Form() {
+    // Add your validation logic here for the form in step 4
+    // Return true if the form is valid, false otherwise
+
+    // // Example: Check if the email and mobile number fields are filled
+    // var email = $("#exampleInputEmail1").val();
+    // var telephone = $("#telephone").val();
+
+    // if (!email || !telephone) {
+    //     // Display an error message or handle validation feedback
+    //     alert("Please fill in the required fields.");
+    //     return false;
+    // }
+
+    return false;  // Form is valid
+}

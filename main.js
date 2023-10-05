@@ -120,7 +120,7 @@ var data = [
             stepProgress(step);
           }
           hideButtons(step);
-        }, 2000); 
+        }, 2000000); 
 
         setTimeout( function(){
           const start = () => {
@@ -137,7 +137,7 @@ var data = [
         start();
         stop();
           
-        }, 2000)
+        }, 2000000)
        
 
    

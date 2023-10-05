@@ -15,6 +15,7 @@ h1 {
 }
 
 .card-body {
+  padding: 3rem;
   background-color: #fff;
   border: 2px solid #002F87;
   border-radius: 10px;
@@ -29,6 +30,9 @@ h1 {
   box-shadow: none;
 }
 
+.min-w{
+  min-width: 720px;
+}
 
 
 
@@ -455,6 +459,9 @@ label span:before {
 .radio-item-container{
   padding: 15px 20px;
 }
+#name_title{
+  width: 50%;
+}
 
 .radio.selected {
   box-shadow: 0px 8px 16px 0px #EEEEEE;
@@ -511,21 +518,74 @@ label span:before {
  }
 
  @media (max-width: 1199.98px) { 
-  .btn{
+  h1 {
+    font-size: 45px;
+  }
+  .c_btn{
     padding: 25px 50px;
   }
 
  }
 
  @media (max-width: 991.98px) { 
-  .btn{
+  .c_btn{
     padding: 20px 25px;
   }
  }
  @media (max-width: 767.98px) { 
+  .min-w{
+    min-width: 100%;
+  }
+
+  .c_btn{
+    padding: 25px 15px;
+    font-size: 15px;
+  }
+  #txt-search{
+    font-size: 16px;
+    padding: 10px 15px !important;
+  }
+  .card-footer{
+    display: grid;
+  }
 
  }
  @media (max-width: 575.98px) { 
+  .card-body{
+    padding: 1rem 1rem;
+  }
+  h1{
+    font-size: 30px;
+  }
+  .c_btn{
+    padding: 25px 5px;
+    font-size: 12px;
+  }
+  #txt-search{
+    font-size: 12px;
+    padding: 5px !important;
+  }
+.back{
+  font-size: 17px;
+}
+.tooltip {
+  padding: 10px 10px;
+  width: 100px;
+  font-size: 15px;
+}
+#button-addon2, #clear-button{
+  font-size: 17px;
+  padding: 25px 50px;
+
+}
+#name_title{
+  width: 100%;
+}
+.loader-container {
+  width: 100%;
+    top: 35%;
+    left: 0%;
+}
 
  }
 

@@ -183,8 +183,8 @@ h1 {
 }
 
 .loader-container .dollar-icon {
-  background-color: #fff;
-  background-image: url('./kindpng_103949.png');
+ 
+  background-image: url('./loader1.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;

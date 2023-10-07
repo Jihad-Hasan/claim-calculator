@@ -254,8 +254,13 @@ var data = [
         
         
       }
-      
-     
+      if (step === 4) {
+        // Perform validation for step 4
+        if (!validateStep4Form()) {
+            return;  // Stop here if validation fails
+        }
+    }
+    
       // Show overlay and loader for 4 seconds
     
       
@@ -263,10 +268,45 @@ var data = [
    // }
 });
 
-$(".submit").on("click", function () {
+function validateStep4Form() {
+  // Example validation logic for the step 4 form
+  var title = $("#name_title").val();
+  var firstName = $("#fname").val();
+  var lastName = $("#lname").val();
+  var dob = $("#dob").val();
+  var jobTitle = $("#job_title").val();
 
-  if(document.querySelector("canvas").style.borderColor != 'red'){
-    var nextstep = true;
+  // Check if any of the fields is empty
+  if (!title || !firstName || !lastName || !dob || !jobTitle) {
+    return false; // Form is invalid
+  }
+
+  return true; // Form is valid
+}
+function validateStep5Form() {
+  // Example validation logic for the step 4 form
+  var email = $("#email_input").val();
+  var telephone = $("#telephone").val();
+
+  // Check if any of the fields is empty
+  if (!email || !telephone) {
+    return false; // Form is invalid
+  }
+
+  return true; // Form is valid
+}
+$(".btn-uniqe2").on("click", function () {
+  var nextstep = false;
+
+  if (!validateStep4Form()) {
+    // Display an error message or handle validation feedback
+    alert("Please fill in the required fields");
+   
+  }else{
+     nextstep = true;
+
+  }
+
  
     if (nextstep == true) {
      
@@ -280,13 +320,104 @@ $(".submit").on("click", function () {
       hideButtons(step);
     }
 
+
+  
+});
+
+
+
+$(".btn-uniqe3").on("click", function () {
+  var nextstep = false;
+
+  if (!validateStep5Form()) {
+    // Display an error message or handle validation feedback
+    alert("Please fill in the required fields");
+   
+  }else{
+     nextstep = true;
+
   }
+
+ 
+    if (nextstep == true) {
+     
+      if (step < $(".step").length) {
+        $(".step").show();
+        $(".step")
+          .not(":eq(" + step++ + ")")
+          .hide();
+          stepProgress(step);
+      }
+      hideButtons(step);
+    }
+
+  
+});
+
+
+
+$(".submit").on("click", function () {
+  var nextstep = false;
+
+
+
+  if (isSignatureEmpty()) {
+    showAlert();
+} else {
+    hideAlert();
+    var image = new Image();
+    image.src = cvs.toDataURL('image/png');
+    // Append the signature image to the body for demonstration
+    console.log(image.src);
+    nextstep = true;
+
+}
+
+
+ 
+     if (nextstep == true) {
+     
+       if (step < $(".step").length) {
+         $(".step").show();
+         $(".step")
+           .not(":eq(" + step++ + ")")
+           .hide();
+           stepProgress(step);
+       }
+       hideButtons(step);
+     }
+
 
 
   
 });
 
-  
+
+
+function showAlert() {
+  signAlert.style.display = 'block';
+  cvs.style.borderColor = 'red';
+}
+
+function hideAlert() {
+  signAlert.style.display = 'none';
+  cvs.style.borderColor = 'black';
+
+}
+
+
+
+
+
+function isSignatureEmpty() {
+  var imageData = ctx.getImageData(0, 0, cvs.width, cvs.height).data;
+  for (var i = 0; i < imageData.length; i += 4) {
+      if (imageData[i + 3] !== 0) {
+          return false; // Signature is not empty
+      }
+  }
+  return true; // Signature is empty
+}
   
   // ON CLICK BACK BUTTON
  // ON CLICK BACK BUTTON
@@ -315,8 +446,11 @@ $(".back").on("click", function () {
   hideButtons = function (step) {
     var limit = parseInt($(".step").length);
     $(".action").hide();
+    $("#none").hide();
+
     if (step < limit - 1) {
       $(".next").show();
+
     }
     if (step > 1) {
       $(".back").show();
@@ -328,9 +462,16 @@ $(".back").on("click", function () {
      $(".btn-uniqe").hide();
      //$('.gas-claim').show();
     }
+    if(step == 4){
+      $(".btn-uniqe").hide();
+      $(".btn-uniqe2").show();
+     }
+     if(step == 5){
+      $(".btn-uniqe").hide();
+      $(".btn-uniqe3").show();
+     }
     if(step == 3 && currentType =='gande'){
       $('.gas-claim').hide();
-
     }
     if (step == (limit - 1)) {
       $(".next").hide();
@@ -472,21 +613,4 @@ function updateEPriceTwo() {
 function updateBothprice() {
   $(".bothprice1").text("£ "+ parseInt(totalPrice3 + totalPrice1));
   $(".bothprice2").text("£ "+ parseInt(totalPrice2 + totalPrice4));
-}
-
-function validateStep4Form() {
-    // Add your validation logic here for the form in step 4
-    // Return true if the form is valid, false otherwise
-
-    // // Example: Check if the email and mobile number fields are filled
-    // var email = $("#exampleInputEmail1").val();
-    // var telephone = $("#telephone").val();
-
-    // if (!email || !telephone) {
-    //     // Display an error message or handle validation feedback
-    //     alert("Please fill in the required fields.");
-    //     return false;
-    // }
-
-    return false;  // Form is valid
 }

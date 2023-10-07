@@ -251,13 +251,13 @@
                     <div class="form-group mt-2">
                         <label for="exampleInputEmail1" class="fs-5">Date of birth<b
                                 style="color: #dc3545">*</b></label>
-                        <input type="date" class="form-control text-uppercase p-3" required>
+                        <input type="date" id="dob" class="form-control text-uppercase p-3" required>
 
                     </div>
                     <div class="form-group mt-2">
                         <label for="exampleInputEmail1" class="fs-5">Your job title<b
                                 style="color: #dc3545">*</b></label>
-                        <input type="text" class="form-control p-3" placeholder="Your Job title" required>
+                        <input id="job_title" type="text" class="form-control p-3" placeholder="Your Job title" required>
                     </div>
 
 
@@ -276,7 +276,7 @@
                     <h4 class="text-primary">Email Address</h4>
 
                     <label for="exampleInputEmail1">So we can keep you up to date via email</label>
-                    <input type="email" class="form-control p-3 mt-2" id="exampleInputEmail1"
+                    <input type="email" class="form-control p-3 mt-2" id="email_input"
                         aria-describedby="emailHelp" placeholder="Enter Your Email">
 
                 </div>
@@ -335,6 +335,12 @@ By affixing your signature above, you acknowledge that you have read and underst
                 <button class="action btn-uniqe next btn btn-secondary float-end" style="display: none">
                      Next
                 </button>
+                <button class="action btn-uniqe2 btn btn-secondary float-end" id="none" style="display: none">
+                    unique
+               </button>
+               <button class="action btn-uniqe3 btn btn-secondary float-end" id="none" style="display: none">
+                unique
+           </button>
                 <button class="action back" style="display: none">
                     <i class="fas fa-chevron-left"></i> &nbsp; Go back
                 </button>

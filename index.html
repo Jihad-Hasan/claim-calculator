@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Claim Calculator</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/rangeslider-pure@0.4.4/dist/range-slider.css">
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/rangeslider-pure@0.4.4/dist/range-slider.css">
+    <link rel="stylesheet" href="./css/style.css" />
 </head>
 
 <body>
@@ -19,6 +18,7 @@
                     style="font-weight: bold; font-size: 15px" role="progressbar" aria-valuemin="0" aria-valuemax="100">
                 </div>
             </div>
+
             <div class="card mt-3" id="step-one" style="display: block">
                 <div class="card-body step">
                     <h1 class="fw-bold mb-3">
@@ -37,28 +37,19 @@
 
                     </div>
                     <div id="filter-records" class=""></div>
-
                 </div>
-
             </div>
-            <div class="card mt-3 step" id="userinfo" style="display: none">
 
+            <div class="card mt-3 step" id="userinfo" style="display: none">
                 <div class="card-body">
                     <h1 class="mb-4 fw-bold">
                         About your energy supplier?
                     </h1>
                     <div>
-
                         <h4 class="fs-1 mb-4 fw-noraml">Type of utility</h4>
-
-
-
-
-
                         <div class="container-r">
                             <form class="row">
                                 <div class="col-md-6">
-
                                     <label>
                                         <input type="radio" name="utility" id="gas" value="gas" />
                                         <span class="error1">Gas</span>
@@ -70,25 +61,21 @@
                                 </div>
 
                                 <div class="col-md-6">
-
                                     <label>
                                         <input type="radio" name="utility" id="gande" value="gas & electric" />
                                         <span class="error1">Gas & Electric</span>
                                     </label>
-
                                 </div>
-
-
-
                             </form>
                             <div class="alert alert-danger" style="display: none;" id="alert1" role="alert">
                                 Please select the type of utility
-                              </div>
+                            </div>
                         </div>
                     </div>
 
                     <div class="mt-3">
-                        <h4 class="fs-sm-1 mb-4 fw-noraml">Did the broker specify if commissions would be added to the cost
+                        <h4 class="fs-sm-1 mb-4 fw-noraml">Did the broker specify if commissions would be added to the
+                            cost
                             of the
                             energy?
                         </h4>
@@ -110,14 +97,11 @@
                             </div>
                             <div class="alert alert-danger" id="alert2" style="display: none;" role="alert">
                                 Please select the option
-                              </div>
+                            </div>
                         </fieldset>
-                        
                     </div>
-
                 </div>
             </div>
-
 
             <div class="card-body step" style="display: none">
                 <h2 for="" class="mb-3">
@@ -125,10 +109,6 @@
                 </h2>
 
                 <div class="condition1" style="display: none;">
-
-                 
-                      
-
                     <h3 class="mb-4">
                         Your Gas Usage
                     </h3>
@@ -137,55 +117,54 @@
                     <label for="customRange1" class="form-label">How much do you spend on Gas Each Month?
                         (Estimate)</label>
 
-                        <div class="container-range">
-                            <input type="range" class="money_slider" min="0" max="2500" value="0" step="100" id="customRange1"/>
-                            <p class="value-display" id="gasValue">£ 0</p>
-                        </div>
+                    <div class="container-range">
+                        <input type="range" class="money_slider" min="0" max="2500" value="0" step="100"
+                            id="customRange1" />
+                        <p class="value-display" id="gasValue">£ 0</p>
+                    </div>
 
                     <label for="customRange2" class="form-label">How long is your Gas contract? (Months)</label>
-                   
+
                     <div class="container-range">
-                        <input type="range" class="month_slider"  min="0" value="0" max="60" step="12" id="customRange2"/>
+                        <input type="range" class="month_slider" min="0" value="0" max="60" step="12"
+                            id="customRange2" />
                         <p class="value-display" id="gasContractValue">0 Months</p>
                     </div>
 
                     <div class="alert alert-danger" style="display: none;" id="alert3" role="alert">
-                      Please choose both value
-                      </div>
-                   
+                        Please choose both value
+                    </div>
+
                     <div class="text-center">
-                        <button type="button" id="button-addon2"
-                            class="action gas-claim next btn btn-outline-secondary" style="display: none;">
+                        <button type="button" id="button-addon2" class="action gas-claim next btn btn-outline-secondary"
+                            style="display: none;">
                             Calculate My Claim
                         </button>
                     </div>
                 </div>
+
                 <div class="condition2" style="display: none;">
-
-
                     <h3 class="mb-4">
                         Your Electricity Usage
                     </h3>
                     <h4 class="mb-3">Make a selection below using the sliders</h4>
                     <label for="customRange1" class="form-label">How much do you spend on Electricity Each Month?
                         (Estimate)</label>
-
-
-                        <div class="container-range">
-                            <input type="range" class="money_slider" min="0" value="0" max="25000" step="100" id="customRange3"/>
-                            <p class="value-display" id="eleValue">£ 0</p>
-                        </div>
-
-
-                    <label for="customRange2" class="form-label">How long is your Electic contract? (Months)</label>
-                  
                     <div class="container-range">
-                        <input type="range" class="month_slider" min="0" value="0" max="60" step="12" id="customRange4"/>
+                        <input type="range" class="money_slider" min="0" value="0" max="25000" step="100"
+                            id="customRange3" />
+                        <p class="value-display" id="eleValue">£ 0</p>
+                    </div>
+                    <label for="customRange2" class="form-label">How long is your Electic contract? (Months)</label>
+
+                    <div class="container-range">
+                        <input type="range" class="month_slider" min="0" value="0" max="60" step="12"
+                            id="customRange4" />
                         <p class="value-display" id="electricContractValue">0 Months</p>
                     </div>
                     <div class="alert alert-danger" style="display: none;" id="alert4" role="alert">
                         Please choose both value
-                        </div>
+                    </div>
                     <div class="text-center">
                         <button type="button" id="button-addon2" class="action next btn btn-outline-secondary">
                             Calculate My Claim
@@ -193,36 +172,24 @@
                     </div>
 
                 </div>
-
             </div>
+
             <div class="card-body step" style="display: none">
-    <script src="confetti.js"></script>
-    
                 <h1 class="fw-bold mb-4">
                     Congratulations You Might Have a Claim
                 </h1>
+
                 <div>
                     <h4 class="mb-4">Your Claim Has Been Calculated As:</h3>
-
-
-
                         <div class="indivisul_price">
-                            <p class="fs-1 text-center value-display"><span class="priceone fs-1"> 0.00</span><span class="priceEOne fs-1"></span></p>
-                            <!-- <p class="fs-4 value-display">And</p>
-                            <p class="fs-4 value-display">Price: <span class="priceTwo priceETwo fs-4"> 0.00</span></p> -->
+                            <p class="fs-1 text-center value-display"><span class="priceone fs-1"> 0.00</span><span
+                                    class="priceEOne fs-1"></span></p>
                         </div>
-
-
-
-
                         <div class="bothprice">
                             <p class="fs-1 text-center value-display"><span class="bothprice1 fs-1"> 0.00</span></p>
-                            <!-- <p class="fs-4 value-display">And</p>
-
-                            <p class="fs-4 value-display">Price: <span class="bothprice2 fs-4"> 0.00</span></p> -->
                         </div>
-
                 </div>
+
                 <form class="claim mt-5">
                     <h4 class="mb-4">Make My Claim</h4>
                     <label for="" class="fs-4">Title<b style="color: #dc3545">*</b></label>
@@ -233,7 +200,6 @@
                         <option value="3">Miss</option>
                         <option value="3">Doctor</option>
                         <option value="3">Other</option>
-
                     </select>
 
                     <div class="form-group mt-2 row">
@@ -257,14 +223,12 @@
                     <div class="form-group mt-2">
                         <label for="exampleInputEmail1" class="fs-5">Your job title<b
                                 style="color: #dc3545">*</b></label>
-                        <input id="job_title" type="text" class="form-control p-3" placeholder="Your Job title" required>
+                        <input id="job_title" type="text" class="form-control p-3" placeholder="Your Job title"
+                            required>
                     </div>
-
-
                 </form>
-                
-
             </div>
+
             <div class="card-body step" style="display: none">
                 <h2 class="fw-bold">
                     Your Contact Details
@@ -273,14 +237,11 @@
                     why we ask
                     for your email address and mobile number. We will also send you a text with your case number as a
                     reference.</p>
-
                 <div class="form-group mt-4">
                     <h4 class="">Email Address <b style="color: #dc3545">*</b></h4>
-
                     <label for="exampleInputEmail1">So we can keep you up to date via email</label>
-                    <input type="email" class="form-control p-3 mt-2" id="email_input"
-                        aria-describedby="emailHelp" placeholder="Enter Your Email">
-
+                    <input type="email" class="form-control p-3 mt-2" id="email_input" aria-describedby="emailHelp"
+                        placeholder="Enter Your Email">
                 </div>
 
                 <div class="form-group mt-4">
@@ -293,56 +254,46 @@
             </div>
 
             <div class="card-body step" style="display: none">
-
                 <h4 class="text-primary">This is the final step for your claim</h4>
                 <h1 class="fw-bold">Sign and complete</h1>
                 <p class="fs-5">Panoserve work with a panel of law firms specialising in energy mis-selling. Your
                     signature will be applied to this document, which allows us to proceed with your claim on a no win,
                     no fee basis. Your claim could be worth £10,000s.</p>
-
                 <h4 class="text-primary">Your signature <b style="color: #dc3545">*</b></h4>
                 <p>Please keep your signature in the boundaries of the white box below
                 </p>
 
-
                 <div id="signature-container">
                     <canvas id="signature-pad" class="img-fluid" width="600" height="300"></canvas>
                     <p class="sign-alert">Please Sign in the white box above to complete</p>
-                    <button class="d-block btn btn-primary fw-bold" id="clear-button" style="background: #6c757d!important;">Reset Signature</button>
+                    <button class="d-block btn btn-primary fw-bold" id="clear-button"
+                        style="background: #6c757d!important;">Reset Signature</button>
                 </div>
-
                 <textarea name="" id="" cols="" rows="5" readonly class="fw-bold py-2 mt-2 px-3" style="width: 100%;">
 By affixing your signature above, you acknowledge that you have read and understand the engagement letter. This document includes a damages-based agreement and a litigation management agreement, establishing a no-win, no-fee arrangement between your business and our legal consultants. The conditions of this agreement stipulate that you may be responsible for a fee to our legal professionals if your claim succeeds or if you fail to uphold your commitments under the agreement. Moreover, you confirm that you possess the requisite authority to direct our legal affiliates to represent your business.
 </textarea>
             </div>
 
-
             <div class="card-body step" style="display: none">
-
                 <h4 class="text-primary">Your claim has been submitted</h4>
                 <h1 class="fw-bold">Thank You</h1>
                 <p class="fs-5">You have successfully submitted your business energy claim, and we have received your
                     information.</p>
-
                 <h4 class="text-primary">What happens Next?</h4>
                 <p class="fs-5">One of our claims investigators will be in touch regarding the next steps of your claim.
                     All you have to do now is sit back and we will be in touch.</p>
-
-
-
             </div>
 
             <div class="card-footer">
-              
                 <button class="action btn-uniqe next btn btn-secondary float-end" style="display: none">
-                     Next
+                    Next
                 </button>
                 <button class="action btn-uniqe2 btn btn-secondary float-end" id="none" style="display: none">
                     Next
-               </button>
-               <button class="action btn-uniqe3 btn btn-secondary float-end" id="none" style="display: none">
-                Next
-           </button>
+                </button>
+                <button class="action btn-uniqe3 btn btn-secondary float-end" id="none" style="display: none">
+                    Next
+                </button>
                 <button class="action back" style="display: none">
                     <i class="fas fa-chevron-left"></i> &nbsp; Go back
                 </button>
@@ -357,21 +308,21 @@ By affixing your signature above, you acknowledge that you have read and underst
     <div class="overlay" id="overlay"></div>
     <div class="loader-container text-center text-white">
         <div class="loader">
-          <div class="dollar-icon"></div>
+            <div class="dollar-icon"></div>
         </div>
         <div class="loader-title">
             Calculating your claim
-            </div>
-            <p>Please wait whilst we check our databases</p>
-      </div>
-      
+        </div>
+        <p>Please wait whilst we check our databases</p>
+    </div>
     <div class="loader2" id="loader"></div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/rangeslider-pure@0.4.4/dist/range-slider.min.js"></script>
-
-    <script src="./canvas.js"></script>
-    <script src="./main.js"></script>
-
-
+    <script src="./js/confetti.js"></script>
+    <script src="./js/canvas.js"></script>
+    <script src="./js/main.js"></script>
 </body>
+
+</html>

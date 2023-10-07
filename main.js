@@ -268,6 +268,7 @@ var data = [
    // }
 });
 
+
 function validateStep4Form() {
   // Example validation logic for the step 4 form
   var title = $("#name_title").val();
@@ -301,8 +302,11 @@ $(".btn-uniqe2").on("click", function () {
   if (!validateStep4Form()) {
     // Display an error message or handle validation feedback
     alert("Please fill in the required fields");
+    //$("#form-alert").css("display","block")
    
   }else{
+    $("#form-alert").css("display","none")
+
      nextstep = true;
 
   }

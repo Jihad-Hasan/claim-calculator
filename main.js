@@ -133,6 +133,8 @@ var data = [
             $(".loader-container").hide();
     
             if (step < $(".step").length) {
+              updateSelectedValues(step);
+
               $(".step").show();
               $(".step")
                 .not(":eq(" + step++ + ")")
@@ -160,7 +162,7 @@ var data = [
           }, 2000)
         }
         else if(currentType == 'electric' && (elecValue > 0 && elecMonthvalue > 0)){
-          $('#alert3').css("display","none");
+          $('#alert4').css("display","none");
 
           $("#overlay").show();
           $(".loader-container").show();
@@ -169,6 +171,8 @@ var data = [
             $(".loader-container").hide();
     
             if (step < $(".step").length) {
+              updateSelectedValues(step);
+
               $(".step").show();
               $(".step")
                 .not(":eq(" + step++ + ")")
@@ -195,7 +199,7 @@ var data = [
             
           }, 2000)
         }
-        else if(currentType == 'gande' && (gasValue > 0 && gasMonthvalue >0)&&(elecValue > 0 && elecMonthvalue > 0)){
+        else if(currentType == 'gas & electric' && (gasValue > 0 && gasMonthvalue >0)&&(elecValue > 0 && elecMonthvalue > 0)){
           $('#alert3').css("display","none");
           $('.gas-claim').hide();
           $("#overlay").show();
@@ -205,6 +209,7 @@ var data = [
             $(".loader-container").hide();
     
             if (step < $(".step").length) {
+              updateSelectedValues(step);
               $(".step").show();
               $(".step")
                 .not(":eq(" + step++ + ")")
@@ -232,9 +237,13 @@ var data = [
           }, 2000)
         }else{
           $('#alert3').css("display","block");
+          $('#alert4').css("display","block");
+
         }
       }
       else{
+        //$('#alert3').css("display","block");
+
        // $('#alert3').css("display","block");
         $("#overlay").show();
         $("#loader").show();
@@ -243,6 +252,8 @@ var data = [
           $("#loader").hide();
   
           if (step < $(".step").length) {
+            updateSelectedValues(step);
+
             $(".step").show();
             $(".step")
               .not(":eq(" + step++ + ")")
@@ -315,6 +326,8 @@ $(".btn-uniqe2").on("click", function () {
     if (nextstep == true) {
      
       if (step < $(".step").length) {
+        updateSelectedValues(step);
+
         $(".step").show();
         $(".step")
           .not(":eq(" + step++ + ")")
@@ -346,6 +359,8 @@ $(".btn-uniqe3").on("click", function () {
     if (nextstep == true) {
      
       if (step < $(".step").length) {
+        updateSelectedValues(step);
+
         $(".step").show();
         $(".step")
           .not(":eq(" + step++ + ")")
@@ -358,7 +373,7 @@ $(".btn-uniqe3").on("click", function () {
   
 });
 
-
+var signatureimg;
 
 $(".submit").on("click", function () {
   var nextstep = false;
@@ -372,7 +387,7 @@ $(".submit").on("click", function () {
     var image = new Image();
     image.src = cvs.toDataURL('image/png');
     // Append the signature image to the body for demonstration
-    console.log(image.src);
+    signatureimg = image.src
     nextstep = true;
 
 }
@@ -382,6 +397,8 @@ $(".submit").on("click", function () {
      if (nextstep == true) {
      
        if (step < $(".step").length) {
+        updateSelectedValues(step);
+
          $(".step").show();
          $(".step")
            .not(":eq(" + step++ + ")")
@@ -474,7 +491,7 @@ $(".back").on("click", function () {
       $(".btn-uniqe").hide();
       $(".btn-uniqe3").show();
      }
-    if(step == 3 && currentType =='gande'){
+    if(step == 3 && currentType =='gas & electric'){
       $('.gas-claim').hide();
     }
     if (step == (limit - 1)) {
@@ -483,20 +500,17 @@ $(".back").on("click", function () {
     }
   };
   
-  function setFormFields(id) {
-    if (id != false) {
-      // FILL STEP 2 FORM FIELDS
+   function setFormFields(id) {
+
+   if (id != false) {
+      //FILL STEP 2 FORM FIELDS
       d = data.find(x => x.id === id);
      
     } else {
-      // EMPTY USER SEARCH INPUT
+     // EMPTY USER SEARCH INPUT
       $("#txt-search").val('');
-       // EMPTY STEP 2 FORM FIELDS
-       $('#fname').val('');
-       $('#lname').val('');
-       $('#team').val('');
-       $('#address').val('');
-       $('#tel').val('');
+     //  EMPTY STEP 2 FORM FIELDS
+     
     }
   }
   
@@ -522,14 +536,12 @@ var currentType = ''
 
 var totalPrice1 = 0;
 var totalPrice2 = 0;
-var totalPrice3 = 0;
-var totalPrice4 = 0;
+
   $('#customRange1').on('input', function() {
     $('#gasValue').text("£ "+ $(this).val());
       $('#alert3').css("display","none");
     gasValue = parseInt($(this).val());
     updatePriceOne();
-    updatePriceTwo()
     updateBothprice()
 
 });
@@ -540,26 +552,27 @@ $('#customRange2').on('input', function() {
     $('#gasContractValue').text($(this).val()+" Months");
     gasMonthvalue = parseInt($(this).val());
     updatePriceOne();
-    updatePriceTwo()
     updateBothprice()
 
 });
 
 $('#customRange3').on('input', function() {
+  $('#alert4').css("display","none");
+
     $('#eleValue').text("£ "+ $(this).val());
 
     elecValue = parseInt($(this).val());
     updateEPriceOne();
-    updatePriceTwo()
     updateBothprice()
     
 });
 
 $('#customRange4').on('input', function() {
+  $('#alert4').css("display","none");
+
     $('#electricContractValue').text($(this).val()+" Months");
     elecMonthvalue = parseInt($(this).val());
     updateEPriceOne();
-    updateEPriceTwo()
     updateBothprice()
 });
 
@@ -570,6 +583,13 @@ $('input[type="radio"]').change(function() {
         $('.condition1').show();
         $('.condition2').hide();
         $('.bothprice').hide();
+        $('.indivisul_price').show();
+        $('.priceEOne').hide();
+
+        $('.priceone').show();
+
+        
+
 
     } else if ($(this).val() === 'electric') {
       currentType = 'electric';
@@ -577,9 +597,17 @@ $('input[type="radio"]').change(function() {
         $('.condition1').hide();
         $('.condition2').show();
         $('.bothprice').hide();
+        $('.indivisul_price').show();
+        
 
-    }else if ($(this).val() === 'gande'){
-      currentType = 'gande';
+        $('.priceone').hide();
+        $('.priceEOne').show();
+
+
+
+
+    }else if ($(this).val() === 'gas & electric'){
+      currentType = 'gas & electric';
 
       $('.condition1').show();
       $('.condition2').show();
@@ -591,30 +619,130 @@ $('input[type="radio"]').change(function() {
 });
 
 function updatePriceOne() {
-  totalPrice1 = ((gasValue * gasMonthvalue) * 0.14);
+  totalPrice1 = ((gasValue * gasMonthvalue) * 0.22);
   $(".priceone").text("£ "+parseInt(totalPrice1));
   updateBothprice();
 }
 
-function updatePriceTwo() {
-  totalPrice2 = ((gasValue * gasMonthvalue) * 0.22);
-  $(".priceTwo").text("£ "+ parseInt(totalPrice2));
-  updateBothprice();
-}
 
 function updateEPriceOne() {
-  totalPrice3 = ((elecValue * elecMonthvalue) * 0.14);
-  $(".priceEOne").text("£ "+ parseInt(totalPrice3));
-  updateBothprice();
-}
-
-function updateEPriceTwo() {
-  totalPrice4 = ((elecValue * elecMonthvalue) * 0.22);
-  $(".priceETwo").text("£ "+ parseInt(totalPrice4));
+  totalPrice2 = ((elecValue * elecMonthvalue) * 0.22);
+  $(".priceEOne").text("£ "+ parseInt(totalPrice2));
   updateBothprice();
 }
 
 function updateBothprice() {
-  $(".bothprice1").text("£ "+ parseInt(totalPrice3 + totalPrice1));
-  $(".bothprice2").text("£ "+ parseInt(totalPrice2 + totalPrice4));
+  $(".bothprice1").text("£ "+ parseInt(totalPrice1 + totalPrice2));
+}
+
+
+
+// Object to hold all the data
+const formData = {
+  energySupplier: '',
+  selectedUtility: '',
+  commissionsAddedToCost: '',
+  selectedgasValue: '',
+  selectedelecValue: '',
+  selectedelecMonthvalue: '',
+  selectedgasMonthvalue: '',
+  gasClaimCalculated: '',
+  electricClaimCalculated: '',
+  gasandelectriClaimCalculated: '',
+  nameTitle: '',
+  firstName: '',
+  lastName: '',
+  dateofBirth: '',
+  jobTitle:'',
+  email:'',
+  phoneNumber: '',
+  signatureImage: '',
+};
+
+function sendToWebhook(data) {
+
+  fetch('https://hooks.zapier.com/hooks/catch/16443623/3r7g2j3/', {
+      method: 'POST',
+      mode: "no-cors",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    .then(response => {
+      console.log('Request sent. Status:', response.status);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+
+}
+
+
+function updateSelectedValues(step) {
+  switch (step) {
+    case 1:
+      formData.energySupplier = $("#txt-search").val();
+      console.log(formData.energySupplier)
+      break;
+    case 2:
+      console.log("step")
+      formData.selectedUtility = $("input[name='utility']:checked").val();
+      formData.commissionsAddedToCost = $("input[name='form2']:checked").val();
+      console.log(formData.selectedUtility);
+      console.log(formData.commissionsAddedToCost)
+      break;
+    case 3:
+      formData.selectedgasValue = gasValue;
+      formData.selectedelecValue = elecValue;
+      formData.selectedelecMonthvalue = elecMonthvalue;
+      formData.selectedgasMonthvalue = gasMonthvalue;
+      console.log(formData.selectedgasValue);
+      console.log(formData.selectedelecValue);
+      console.log(formData.selectedelecMonthvalue);
+      console.log(formData.selectedgasMonthvalue);
+      break;
+    case 4:
+      if(currentType == 'gas' && (gasValue > 0 && gasMonthvalue >0)){
+        formData.gasClaimCalculated = parseInt(totalPrice1);
+        console.log(formData.gasClaimCalculated);
+      }
+      else if(currentType == 'electric' && (elecValue > 0 && elecMonthvalue > 0)){
+        formData.electricClaimCalculated = parseInt(totalPrice2);
+        console.log(formData.electricClaimCalculated);
+      }
+      else if(currentType == 'gas & electric' && (gasValue > 0 && gasMonthvalue >0)&&(elecValue > 0 && elecMonthvalue > 0)){
+      formData.gasandelectriClaimCalculated = parseInt(totalPrice1 + totalPrice2);
+      console.log(formData.gasandelectriClaimCalculated);
+        };
+        formData.nameTitle = $("#name_title").val();
+        formData.firstName = $("#fname").val();
+        formData.lastName = $("#lname").val();
+        formData.dateofBirth = $("#dob").val();
+        formData.jobTitle = $("#job_title").val();
+        console.log(formData.nameTitle)
+        console.log(formData.firstName)
+        console.log(formData.lastName)
+        console.log(formData.dateofBirth)
+        console.log(formData.jobTitle)
+
+      break;
+    case 5:
+
+ formData.email = $("#email_input").val();
+      formData.phoneNumber = $("#telephone").val();
+      console.log(formData.email);
+      console.log(formData.phoneNumber);
+      break;
+    case 6:
+     formData.signatureImage = signatureimg;
+     console.log(formData.signatureImage)
+      break;
+    default:
+      break;
+  }
+
+  if (step === 6) {
+    sendToWebhook(formData);
+  }
 }

@@ -265,7 +265,6 @@ $("input[name='form2']").on("change", function () {
 });
 
 $(".next").on("click", function () {
-  console.log(step)
   var nextstep = false;
   if (step == 2) {
     nextstep = checkForm("userinfo");
@@ -432,12 +431,8 @@ $(".next").on("click", function () {
     }
   }
 
-  // Show overlay and loader for 4 seconds
-
-
-  // 4 seconds delay
-  // }
 });
+
 
 
 function validateStep4Form() {
@@ -446,31 +441,100 @@ function validateStep4Form() {
   var lastName = $("#lname").val();
   var dob = $("#dob").val();
   var jobTitle = $("#job_title").val();
+  var isFormValid = true;
 
-  // Check if any of the fields is empty
-  if (!title || !firstName || !lastName || !dob || !jobTitle) {
-    return false; // Form is invalid
+  if (!title) {
+    $("#name_title").css("border", "2px solid red");
+    isFormValid = false;
   }
-  return true; // Form is valid
+
+  if (!firstName) {
+    $("#fname").css("border", "2px solid red");
+    $("#fname_alert").css("display", "block");
+    isFormValid = false;
+  }
+
+  if (!lastName) {
+    $("#lname").css("border", "2px solid red");
+    $("#lname_alert").css("display", "block");
+    isFormValid = false;
+  }
+
+  if (!dob) {
+    $("#dob").css("border", "2px solid red");
+    $("#dob_alert").css("display", "block");
+    isFormValid = false;
+  }
+
+  if (!jobTitle) {
+    $("#job_title").css("border", "2px solid red");
+    $("#job_alert").css("display", "block");
+    isFormValid = false;
+  }
+
+  if (!isFormValid) {
+
+  }
+  return isFormValid;
 }
+
+$("#fname").on("click", function () {
+  $(this).css("border", "");
+  $("#fname_alert").css("display", "none");
+});
+$("#lname").on("click", function () {
+  $(this).css("border", "");
+  $("#lname_alert").css("display", "none");
+});
+$("#dob").on("click", function () {
+  $(this).css("border", "");
+  $("#dob_alert").css("display", "none");
+});
+
+$("#job_title").on("click", function () {
+  $(this).css("border", "");
+  $("#job_alert").css("display", "none");
+});
+
+
+
 
 function validateStep5Form() {
   var email = $("#email_input").val();
   var telephone = $("#telephone").val();
+  var isFormValid = true;
 
-  // Check if any of the fields is empty
-  if (!email || !telephone) {
-    return false; // Form is invalid
+  if (!email) {
+    $("#email_input").css("border", "2px solid red");
+    $("#email_alert").css("display", "block");
+    isFormValid = false;
+  }
+  if (!telephone) {
+    $("#telephone").css("border", "2px solid red");
+    $("#telephone_alert").css("display", "block");
+
+    isFormValid = false;
   }
 
-  return true; // Form is valid
-}
 
+  if (!isFormValid) {
+
+  }
+  return isFormValid;
+}
+$("#email_input").on("click", function () {
+  $(this).css("border", "");
+  $("#email_alert").css("display", "none");
+});
+$("#telephone").on("click", function () {
+  $(this).css("border", "");
+  $("#telephone_alert").css("display", "none");
+});
 $(".btn-uniqe2").on("click", function () {
   var nextstep = false;
 
   if (!validateStep4Form()) {
-    alert("Please fill in the required fields");
+    //alert("Please fill in the required fields");
   } else {
     $("#form-alert").css("display", "none")
 
@@ -498,7 +562,7 @@ $(".btn-uniqe3").on("click", function () {
   var nextstep = false;
 
   if (!validateStep5Form()) {
-    alert("Please fill in the required fields");
+    // alert("Please fill in the required fields");
   } else {
     nextstep = true;
   }
@@ -549,6 +613,7 @@ function showAlert() {
   signAlert.style.display = 'block';
   cvs.style.borderColor = 'red';
 }
+
 function hideAlert() {
   signAlert.style.display = 'none';
   cvs.style.borderColor = 'black';
@@ -565,7 +630,6 @@ function isSignatureEmpty() {
   return true; // Signature is empty
 }
 
-// ON CLICK BACK BUTTON
 // ON CLICK BACK BUTTON
 $(".back").on("click", function () {
   if (step > 1) {
@@ -798,7 +862,6 @@ function updateSelectedValues(step) {
       console.log(formData.energySupplier)
       break;
     case 2:
-      console.log("step")
       formData.selectedUtility = $("input[name='utility']:checked").val();
       formData.commissionsAddedToCost = $("input[name='form2']:checked").val();
       console.log(formData.selectedUtility);

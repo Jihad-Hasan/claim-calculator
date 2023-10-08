@@ -859,57 +859,39 @@ function updateSelectedValues(step) {
   switch (step) {
     case 1:
       formData.energySupplier = $("#txt-search").val();
-      console.log(formData.energySupplier)
       break;
     case 2:
       formData.selectedUtility = $("input[name='utility']:checked").val();
       formData.commissionsAddedToCost = $("input[name='form2']:checked").val();
-      console.log(formData.selectedUtility);
-      console.log(formData.commissionsAddedToCost)
       break;
     case 3:
       formData.selectedgasValue = gasValue;
       formData.selectedelecValue = elecValue;
       formData.selectedelecMonthvalue = elecMonthvalue;
       formData.selectedgasMonthvalue = gasMonthvalue;
-      console.log(formData.selectedgasValue);
-      console.log(formData.selectedelecValue);
-      console.log(formData.selectedelecMonthvalue);
-      console.log(formData.selectedgasMonthvalue);
       break;
     case 4:
       if (currentType == 'gas' && (gasValue > 0 && gasMonthvalue > 0)) {
         formData.gasClaimCalculated = parseInt(totalPrice1);
-        console.log(formData.gasClaimCalculated);
       } else if (currentType == 'electric' && (elecValue > 0 && elecMonthvalue > 0)) {
         formData.electricClaimCalculated = parseInt(totalPrice2);
-        console.log(formData.electricClaimCalculated);
       } else if (currentType == 'gas & electric' && (gasValue > 0 && gasMonthvalue > 0) && (elecValue > 0 && elecMonthvalue > 0)) {
         formData.gasandelectriClaimCalculated = parseInt(totalPrice1 + totalPrice2);
-        console.log(formData.gasandelectriClaimCalculated);
       };
       formData.nameTitle = $("#name_title").val();
       formData.firstName = $("#fname").val();
       formData.lastName = $("#lname").val();
       formData.dateofBirth = $("#dob").val();
       formData.jobTitle = $("#job_title").val();
-      console.log(formData.nameTitle)
-      console.log(formData.firstName)
-      console.log(formData.lastName)
-      console.log(formData.dateofBirth)
-      console.log(formData.jobTitle)
 
       break;
     case 5:
 
       formData.email = $("#email_input").val();
       formData.phoneNumber = $("#telephone").val();
-      console.log(formData.email);
-      console.log(formData.phoneNumber);
       break;
     case 6:
       formData.signatureImage = signatureimg;
-      console.log(formData.signatureImage)
       break;
     default:
       break;

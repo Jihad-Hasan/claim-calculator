@@ -568,6 +568,7 @@ label span:before {
   }
 .back{
   font-size: 17px;
+  padding: 25px 60px;
 }
 .tooltip {
   padding: 10px 10px;

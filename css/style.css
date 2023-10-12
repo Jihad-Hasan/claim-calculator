@@ -410,7 +410,7 @@ label span:before {
   margin-top: 10px;
   background-color: transparent;
   border: none;
-  color: #000;
+  color: #fff;
   padding: 25px 100px;
   cursor: pointer;
   text-align: center;
@@ -574,7 +574,6 @@ label span:before {
 .back{
   font-size: 17px;
   padding: 25px 60px;
-  color: #fff;
 }
 .tooltip {
   padding: 10px 10px;

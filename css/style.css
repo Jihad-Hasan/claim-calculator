@@ -13,7 +13,9 @@ h1 {
 .card {
   border: none;
 }
-
+.card-footer{
+  border: none;
+}
 .card-body {
   padding: 1rem;
   background-color: #fff;

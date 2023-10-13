@@ -36,7 +36,9 @@
                         </button>
 
                     </div>
-                    <div id="filter-records" class=""></div>
+                    <div id="filter-records" class="">
+                    
+                    </div>
                
                    
                 </div>
@@ -76,10 +78,7 @@
                     </div>
 
                     <div class="mt-3">
-                        <h4 class="fs-sm-1 mb-4 fw-noraml">Did the broker specify if commissions would be added to the
-                            cost
-                            of the
-                            energy?
+                        <h4 class="fs-sm-1 mb-4 fw-noraml">Did you use a broker to purchase your energy?
                         </h4>
                         <fieldset class="mt-3">
                             <legend class="fs-5">Make a section below</legend>
@@ -91,11 +90,11 @@
                                     </label>
                                 </div>
 
-                                <div class="radio-item">
+                                <!-- <div class="radio-item">
                                     <label for="no">
                                         <input type="radio" id="no" name="form2" value="no">
                                         <span class="error2">No</span></label>
-                                </div>
+                                </div> -->
                             </div>
                             <div class="alert alert-danger" id="alert2" style="display: none;" role="alert">
                                 Please select the option
@@ -153,7 +152,7 @@
                     <label for="customRange1" class="form-label">How much do you spend on Electricity Each Month?
                         (Estimate)</label>
                     <div class="container-range">
-                        <input type="range" class="money_slider" min="0" value="0" max="25000" step="100"
+                        <input type="range" class="money_slider" min="0" value="0" max="2500" step="100"
                             id="customRange3" />
                         <p class="value-display" id="eleValue">£ 0</p>
                     </div>
@@ -207,27 +206,28 @@
                     <div class="form-group mt-2 row">
                         <div class="col-md-6">
                             <label for="fname" class="fs-5">First Name<b style="color: #dc3545">*</b></label>
-                            <input type="text" name="name" class="form-control p-3" id="fname" required />
+                            <input type="text" name="name" class="form-control p-3" id="fname" placeholder="Your first name" required />
                             <div class="alert alert-danger mt-1" style="display: none;" id="fname_alert" role="alert">
                                 Please enter your first name
                             </div>                        
                         </div>
                         <div class="col-md-6">
                             <label for="lname" class="fs-5">Last Name<b style="color: #dc3545">*</b></label>
-                            <input type="text" class="form-control p-3 " id="lname" required />
+                            <input type="text" class="form-control p-3 " id="lname" placeholder="Your last name" required />
                             <div class="alert alert-danger mt-1" style="display: none;" id="lname_alert" role="alert">
                                 Please enter your last name
                             </div>
                         </div>
                     </div>
                     <div class="form-group mt-2">
-                        <label for="exampleInputEmail1" class="fs-5">Date of birth<b
+                        <label for="exampleInputEmail1" class="fs-5">Your Company<b
                                 style="color: #dc3545">*</b></label>
-                        <input type="date" id="dob" class="form-control text-uppercase p-3" required>
-                        <div class="alert alert-danger mt-1" style="display: none;" id="dob_alert" role="alert">
-                            Please select your Date of Birth
+                        <input type="text" id="company" class="form-control p-3" placeholder="Your company name" required>
+                        <div class="alert alert-danger mt-1" style="display: none;" id="company_alert" role="alert">
+                            Please enter your company name
                         </div>
                     </div>
+
                     <div class="form-group mt-2">
                         <label for="exampleInputEmail1" class="fs-5">Your job title<b
                                 style="color: #dc3545">*</b></label>
@@ -273,22 +273,19 @@
             <div class="card-body step" style="display: none">
                 <h4 class="text-primary">This is the final step for your claim</h4>
                 <h1 class="fw-bold">Sign and complete</h1>
-                <p class="fs-5">Panoserve work with a panel of law firms specialising in energy mis-selling. Your
-                    signature will be applied to this document, which allows us to proceed with your claim on a no win,
-                    no fee basis. Your claim could be worth £10,000s.</p>
+                <p class="fs-5">Panoserve work with a panel of law firms specialising in energy mis-selling. Your signature will be applied to this document, which allows us to proceed with your claim on a no win, no fee basis. Your claim could be worth £10,000s." to "Panoserve work with a panel of law firms specialising in energy mis-selling on a no win no fee basis. My signing below you are agreeing for us to contact you and investigate your potential energy claim, that could be worth £10,000s.</p>
                 <h4 class="text-primary">Your signature <b style="color: #dc3545">*</b></h4>
                 <p>Please keep your signature in the boundaries of the white box below
                 </p>
 
                 <div id="signature-container">
-                    <canvas id="signature-pad" class="img-fluid" width="600" height="300"></canvas>
+                    <canvas id="signature-pad" class="img-fluid" style="border: 2px solid;" width="600" height="300"></canvas>
                     <p class="sign-alert">Please Sign in the white box above to complete</p>
-                    <button class="d-block btn btn-primary fw-bold" id="clear-button"
+                    <button class="d-block btn-primary fw-bold p-2" id="clear-button"
                         style="background: #6c757d!important;">Reset Signature</button>
                 </div>
-                <textarea name="" id="" cols="" rows="5" readonly class="fw-bold py-2 mt-2 px-3" style="width: 100%;">
-By affixing your signature above, you acknowledge that you have read and understand the engagement letter. This document includes a damages-based agreement and a litigation management agreement, establishing a no-win, no-fee arrangement between your business and our legal consultants. The conditions of this agreement stipulate that you may be responsible for a fee to our legal professionals if your claim succeeds or if you fail to uphold your commitments under the agreement. Moreover, you confirm that you possess the requisite authority to direct our legal affiliates to represent your business.
-</textarea>
+                <textarea name="" id="" cols="" rows="4" readonly class="fw-bold py-2 mt-2 px-3" style="width: 100%;">
+By affixing your signature above, you acknowledge that you have read and understand the engagement letter. This document gives Panoseve content to contact your energy company on your behalf in order to acquire accurate information relating to your energy supply and potential hidden commissions.</textarea>
             </div>
 
             <div class="card-body step" style="display: none">
@@ -314,8 +311,11 @@ By affixing your signature above, you acknowledge that you have read and underst
                 <button class="action back" style="display: none">
                     <i class="fas fa-chevron-left"></i> &nbsp; Go back
                 </button>
-                <button class="action submit btn btn-success float-end" id="save-button" style="display: none">
-                    Submit
+                <button class="action submit btn btn-success float-end me-5" id="save-button" style="display: none">
+                    I Agree
+                </button>
+                <button class="action submit_o btn btn-success float-end" style="display: none">
+                    Proceed without signing
                 </button>
             </div>
         </div>

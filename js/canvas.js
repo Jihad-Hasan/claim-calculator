@@ -35,7 +35,7 @@ Moneysliders.forEach(slider => {
     let tooltip;
     rangeSlider.create(slider, {
         onSlide: (val) => {
-            tooltip.textContent = "£ " + val;
+            tooltip.textContent = "£ " + val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
     });
     const handleEl = slider.rangeSlider.handle;
@@ -43,7 +43,7 @@ Moneysliders.forEach(slider => {
     tooltip = document.createElement('div')
     tooltip.classList.add('tooltip')
     handleEl.appendChild(tooltip)
-    tooltip.textContent = "£ " + slider.rangeSlider.value;
+    tooltip.textContent = "£ " + slider.rangeSlider.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
 })
 

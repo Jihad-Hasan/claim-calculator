@@ -485,7 +485,10 @@ label span:before {
 
 
 
-
+.submit_o{
+  margin-right: 20px;
+  background-color: #6c757d !important;
+}
 
 
 
@@ -530,6 +533,9 @@ label span:before {
   .c_btn{
     padding: 25px 50px;
   }
+  .submit_o{
+    margin-right: 0px;
+  }
 
  }
 
@@ -557,6 +563,10 @@ label span:before {
 
  }
  @media (max-width: 575.98px) { 
+  .btn{
+    padding: 25px 15px;
+    font-size: 18px;
+  }
   .card-body{
     padding: 1rem 1rem;
   }

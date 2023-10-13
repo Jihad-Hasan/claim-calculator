@@ -203,6 +203,11 @@ var data = [{
     fname: "Yorkshire",
     lname: "Energy"
   },
+  {
+    id: "43",
+    fname: "Other",
+    lname: ""
+  },
 ];
 
 $('#txt-search').keyup(function () {
@@ -220,6 +225,8 @@ $('#txt-search').keyup(function () {
       output += '<li id="' + val.id + '" class="li-search">' + val.fname + ' ' + val.lname + '</li>';
     }
   });
+  output += '<li class="li-search"> Other</li>';
+
   $('#filter-records').html(output);
 });
 
@@ -439,7 +446,7 @@ function validateStep4Form() {
   var title = $("#name_title").val();
   var firstName = $("#fname").val();
   var lastName = $("#lname").val();
-  var dob = $("#dob").val();
+  var company = $("#company").val();
   var jobTitle = $("#job_title").val();
   var isFormValid = true;
 
@@ -460,9 +467,9 @@ function validateStep4Form() {
     isFormValid = false;
   }
 
-  if (!dob) {
-    $("#dob").css("border", "2px solid red");
-    $("#dob_alert").css("display", "block");
+  if (!company) {
+    $("#company").css("border", "2px solid red");
+    $("#company_alert").css("display", "block");
     isFormValid = false;
   }
 
@@ -486,9 +493,9 @@ $("#lname").on("click", function () {
   $(this).css("border", "");
   $("#lname_alert").css("display", "none");
 });
-$("#dob").on("click", function () {
+$("#company").on("click", function () {
   $(this).css("border", "");
-  $("#dob_alert").css("display", "none");
+  $("#company_alert").css("display", "none");
 });
 
 $("#job_title").on("click", function () {
@@ -609,6 +616,22 @@ $(".submit").on("click", function () {
 
 
 
+$(".submit_o").on("click", function () {
+  var nextstep = true;
+  
+  if (nextstep == true) {
+    if (step < $(".step").length) {
+      updateSelectedValues(step);
+      $(".step").show();
+      $(".step")
+        .not(":eq(" + step++ + ")")
+        .hide();
+      stepProgress(step);
+    }
+    hideButtons(step);
+  }
+});
+
 function showAlert() {
   signAlert.style.display = 'block';
   cvs.style.borderColor = 'red';
@@ -685,6 +708,8 @@ hideButtons = function (step) {
   if (step == (limit - 1)) {
     $(".next").hide();
     $(".submit").show();
+    $(".submit_o").show();
+
   }
 };
 
@@ -726,7 +751,7 @@ var totalPrice1 = 0;
 var totalPrice2 = 0;
 
 $('#customRange1').on('input', function () {
-  $('#gasValue').text("£ " + $(this).val());
+  $('#gasValue').text("£ " + $(this).val().toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
   $('#alert3').css("display", "none");
   gasValue = parseInt($(this).val());
   updatePriceOne();
@@ -747,7 +772,7 @@ $('#customRange2').on('input', function () {
 $('#customRange3').on('input', function () {
   $('#alert4').css("display", "none");
 
-  $('#eleValue').text("£ " + $(this).val());
+  $('#eleValue').text("£ " + $(this).val().toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 
   elecValue = parseInt($(this).val());
   updateEPriceOne();
@@ -799,18 +824,18 @@ $('input[type="radio"]').change(function () {
 
 function updatePriceOne() {
   totalPrice1 = ((gasValue * gasMonthvalue) * 0.22);
-  $(".priceone").text("£ " + parseInt(totalPrice1));
+  $(".priceone").text("£ " + parseInt(totalPrice1).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
   updateBothprice();
 }
 
 function updateEPriceOne() {
   totalPrice2 = ((elecValue * elecMonthvalue) * 0.22);
-  $(".priceEOne").text("£ " + parseInt(totalPrice2));
+  $(".priceEOne").text("£ " + parseInt(totalPrice2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
   updateBothprice();
 }
 
 function updateBothprice() {
-  $(".bothprice1").text("£ " + parseInt(totalPrice1 + totalPrice2));
+  $(".bothprice1").text("£ " + (parseInt(totalPrice1 + totalPrice2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")));
 }
 
 // Object to hold all the data
@@ -828,7 +853,7 @@ const formData = {
   nameTitle: '',
   firstName: '',
   lastName: '',
-  dateofBirth: '',
+  companyName: '',
   jobTitle: '',
   email: '',
   phoneNumber: '',
@@ -881,7 +906,7 @@ function updateSelectedValues(step) {
       formData.nameTitle = $("#name_title").val();
       formData.firstName = $("#fname").val();
       formData.lastName = $("#lname").val();
-      formData.dateofBirth = $("#dob").val();
+      formData.companyName = $("#company").val();
       formData.jobTitle = $("#job_title").val();
 
       break;

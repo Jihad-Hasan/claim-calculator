@@ -265,7 +265,7 @@ canvas {
   border-bottom: 2px solid #001D52;
   color: #FFFFFF;
   /* position: relative; */
-  padding: 25px 100px;
+  padding: 25px 50px;
   cursor: pointer;
   /* z-index: 50; */
   text-align: center;
@@ -411,7 +411,7 @@ label span:before {
   background-color: transparent;
   border: none;
   color: #fff;
-  padding: 25px 100px;
+  padding: 25px 50px;
   cursor: pointer;
   text-align: center;
   font-weight: 500;

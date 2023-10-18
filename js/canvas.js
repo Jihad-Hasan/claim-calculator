@@ -24,6 +24,26 @@ cvs.addEventListener('mouseup', function () {
     drawing = false;
     ctx.beginPath();
 });
+cvs.addEventListener('touchstart', function (e) {
+    drawing = true;
+    var rect = cvs.getBoundingClientRect();
+    ctx.beginPath();
+    ctx.moveTo(e.touches[0].clientX - rect.left, e.touches[0].clientY - rect.top);
+    hideAlert();
+});
+
+cvs.addEventListener('touchmove', function (e) {
+    if (!drawing) return;
+    var rect = cvs.getBoundingClientRect();
+    ctx.lineTo(e.touches[0].clientX - rect.left, e.touches[0].clientY - rect.top);
+    ctx.stroke();
+});
+
+cvs.addEventListener('touchend', function () {
+    drawing = false;
+    ctx.beginPath();
+});
+
 
 clearButton.addEventListener('click', function () {
     ctx.clearRect(0, 0, cvs.width, cvs.height);

@@ -30,23 +30,24 @@ cvs.addEventListener('touchstart', function (e) {
     drawing = true;
     var rect = cvs.getBoundingClientRect();
     ctx.beginPath();
-    ctx.moveTo(e.touches[0].clientX - rect.left, e.touches[0].clientY - rect.top);
+    ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
     hideAlert();
 });
 
 cvs.addEventListener('touchmove', function (e) {
-    if (!drawing) return;
 
-    // Prevent the default behavior (page scroll) of the touchmove event
+
+    if (!drawing) return;
     e.preventDefault();
 
     var rect = cvs.getBoundingClientRect();
-    ctx.lineTo(e.touches[0].clientX - rect.left, e.touches[0].clientY - rect.top);
+    ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
     ctx.stroke();
 });
 
 
 cvs.addEventListener('touchend', function () {
+
     drawing = false;
     ctx.beginPath();
 });

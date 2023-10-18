@@ -5,7 +5,7 @@ var saveButton = document.getElementById('save-button');
 var signAlert = document.querySelector('.sign-alert');
 var drawing = false;
 // Example: Set canvas width and height based on window size
-cvs.width = window.innerWidth;
+//cvs.width = window.innerWidth;
 
 cvs.addEventListener('mousedown', function (e) {
     drawing = true;
@@ -36,10 +36,15 @@ cvs.addEventListener('touchstart', function (e) {
 
 cvs.addEventListener('touchmove', function (e) {
     if (!drawing) return;
+
+    // Prevent the default behavior (page scroll) of the touchmove event
+    e.preventDefault();
+
     var rect = cvs.getBoundingClientRect();
     ctx.lineTo(e.touches[0].clientX - rect.left, e.touches[0].clientY - rect.top);
     ctx.stroke();
 });
+
 
 cvs.addEventListener('touchend', function () {
     drawing = false;

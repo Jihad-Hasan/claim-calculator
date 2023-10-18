@@ -219,12 +219,6 @@ h1 {
 #signature-container {
   position: relative;
 }
-/* Example CSS for canvas and its parent container */
-#signature-pad {
-  width: 100%; /* Adjust width as needed */
-  height: 100%; /* Adjust height as needed */
-}
-
 
 canvas {
   /* border: 2px solid #000; */

@@ -6,7 +6,6 @@ var signAlert = document.querySelector('.sign-alert');
 var drawing = false;
 // Example: Set canvas width and height based on window size
 cvs.width = window.innerWidth;
-cvs.height = window.innerHeight;
 
 cvs.addEventListener('mousedown', function (e) {
     drawing = true;

@@ -5,6 +5,16 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
+.flex-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* .flex-container > div {
+ 
+} */
+
 h1 {
   color: #17375f;
   font-size: 50px;
